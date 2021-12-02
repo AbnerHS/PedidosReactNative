@@ -8,12 +8,27 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.5",
+    "@react-native-async-storage/async-storage": "^1.15.11",
+    "@react-navigation/bottom-tabs": "^6.0.9",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/native-stack": "^6.2.5",
+    "cors": "^2.8.5",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.3.1",
     "react-native": "0.64.3",
-    "react-native-web": "0.17.1"
+    "react-native-dialog": "^9.2.0",
+    "react-native-elements": "^3.4.2",
+    "react-native-popup-dialog": "^0.18.3",
+    "react-native-vector-icons": "^9.0.0",
+    "react-native-web": "0.17.1",
+    "sequelize": "^6.9.0",
+    "sequelize-cli": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

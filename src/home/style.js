@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
       margin: 5,
     },  
     textoPedido: {
+      flex: 1,
       color: 'white',
       fontSize: 16,
     },

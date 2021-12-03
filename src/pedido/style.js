@@ -7,6 +7,15 @@ const styles = StyleSheet.create({
       backgroundColor: '#262626',
       padding: 10,
     },
+    clienteView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      padding: 5,
+    },
+    texto:{
+      color: 'white',
+      fontSize: 22,
+    },
     viewProduto: {
       flexDirection:'row',
       backgroundColor: '#111',

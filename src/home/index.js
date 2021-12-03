@@ -1,17 +1,32 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Text, TouchableOpacity, View, FlatList, BackHandler} from "react-native";
+import Icon from 'react-native-vector-icons/Ionicons';
 import url from '../utils/url';
 import styles from './style';
+import io from 'socket.io-client';
+
+const socket = io(url);
 
 export default function Home({ navigation }){
     const backAction = () => {return true;};
     useEffect(() => {
         BackHandler.addEventListener("hardwareBackPress", backAction);
+        navigation.setOptions({
+            headerRight: () => (
+                <TouchableOpacity
+                  onPress={()=>logout()}
+                  >
+                  <Icon name="log-out-outline"  size={30}/>
+                </TouchableOpacity>
+              )
+        });
         navigation.addListener('focus', () => {
             getPedidos();
         });
-    }, [navigation]);
+        socket.on('novoPedido', getPedidos);
+        return () => socket.off('novoPedido');
+    }, []);
 
     const [pedidos, setPedidos] = useState(null); 
 
@@ -28,6 +43,16 @@ export default function Home({ navigation }){
         let json = await response.json();
         setPedidos(json);
     }
+
+    async function logout(){
+        try{
+            await AsyncStorage.removeItem("login");
+            await AsyncStorage.removeItem("senha");
+            navigation.popToTop();
+        } catch(e) {
+            console.log(e);
+        }
+      }
 
     function tempo (item){
         let saida, min, hora, dia, mes;
@@ -55,8 +80,6 @@ export default function Home({ navigation }){
             return 'Em preparação';
         else if(item.status == 2)
             return 'Finalizado';
-        else if(item.status == 3)
-            return 'Pago';
     }
 
     let t,s;
@@ -90,11 +113,6 @@ export default function Home({ navigation }){
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                onPress={()=>getPedidos()}
-                >
-                <Text style={{color:'white'}}>Pedidos</Text>
-            </TouchableOpacity>
             <FlatList
                 style={{width:'100%'}}  
                 data={pedidos}

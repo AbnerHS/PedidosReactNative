@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/auth';
 import LoginAuto from './src/auth/auto';
@@ -36,6 +36,7 @@ export default function App() {
           name="Home"
           component={Home}
           options={{
+            headerTitle: 'Pedidos',
             headerBackVisible: false,
           }}
         />

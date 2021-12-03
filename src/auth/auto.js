@@ -7,7 +7,7 @@ import styles from "./style";
 export default function LoginAuto({ navigation }){
     useFocusEffect(() => {
         const login = async () => {
-            const tel = await AsyncStorage.getItem("telefone");
+            const tel = await AsyncStorage.getItem("login");
             const senha = await AsyncStorage.getItem("senha");
             if(tel && senha){
                 navigation.navigate('Home');
